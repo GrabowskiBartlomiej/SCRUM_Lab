@@ -1,4 +1,4 @@
-package pl.coderslab.web;
+package pl.coderslab.model;
 
 public class Recipe {
   private int id;
@@ -30,6 +30,9 @@ public class Recipe {
     this.admin_id = admin_id;
   }
 
+  public Recipe() {
+  }
+
   @Override
   public String toString() {
     return "Recipe{"
@@ -57,9 +60,6 @@ public class Recipe {
         + '}';
   }
 
-  public Recipe(){
-
-  }
 
   public int getId() {
     return id;
