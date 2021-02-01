@@ -4,7 +4,6 @@ package pl.coderslab.dao;
 import pl.coderslab.exception.NotFoundException;
 import pl.coderslab.model.Recipe;
 import pl.coderslab.utils.DbUtil;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +29,7 @@ public class RecipeDao {
       preparedStatement.setDouble(5, recipe.getUpdated());
       preparedStatement.setDouble(6, recipe.getPreparation_time());
       preparedStatement.setString(7, recipe.getPreparation());
+      preparedStatement.setInt(7, recipe.getAdmin_id());
 
       int result = preparedStatement.executeUpdate();
 
@@ -105,6 +105,7 @@ public class RecipeDao {
         recipeToAdd.setUpdated(rs.getDouble("updated"));
         recipeToAdd.setPreparation_time(rs.getDouble("preparation_time"));
         recipeToAdd.setCreated(rs.getDouble("created"));
+        recipeToAdd.setAdmin_id(rs.getInt("admin_id"));
         recipeList.add(recipeToAdd);
       }
     } catch (SQLException e){
