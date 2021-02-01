@@ -6,6 +6,8 @@ import pl.coderslab.model.Book;
 import pl.coderslab.utils.DbUtil;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminDao {
 
@@ -13,6 +15,7 @@ public class AdminDao {
     private static final String READ_ADMIN_ON_ID = "SELECT * FROM admins WHERE id = ?;";
     private static final String UPDATE_ADMIN_ON_ID = "UPDATE admins SET first_name = ?, last_name = ?, email = ?, password = ?, superadmin = ?, enable = ? WHERE id = ?;";
     public static final String DELETE_ADMIN_ON_ID = "DELETE FROM admins WHERE id = ?";
+    private static final String FIND_ALL_ADMINS_QUERY = "SELECT * FROM admins;";
 
     public Admin create(Admin admin) {
         try (Connection connection = DbUtil.getConnection()){
@@ -99,7 +102,29 @@ public class AdminDao {
         }
     }
 
+    public List<Admin> findAll() {
+        List<Admin> bookList = new ArrayList<>();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_ALL_ADMINS_QUERY);
+             ResultSet resultSet = statement.executeQuery()) {
+            System.out.println("połączyłeś się");
+            while (resultSet.next()) {
+                Admin adminToAdd = new Admin();
+                adminToAdd.setId(resultSet.getInt("id"));
+                adminToAdd.setFirstName(resultSet.getString("first_name"));
+                adminToAdd.setLastName(resultSet.getString("last_name"));
+                adminToAdd.setEmail(resultSet.getString("email"));
+                adminToAdd.setPassword(resultSet.getString("password"));
+                adminToAdd.setSuperadmin(resultSet.getInt("superadmin"));
+                adminToAdd.setEnable(resultSet.getInt("enable"));
+                bookList.add(adminToAdd);
+            }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bookList;
+    }
 
     public static String hashPassword(String password){
         return BCrypt.hashpw(password, org.mindrot.jbcrypt.BCrypt.gensalt());
