@@ -8,9 +8,11 @@ import pl.coderslab.utils.DbUtil;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AdminDao {
-
+    private static Pattern CHECK_PASSWORD = Pattern.compile("^(?=.*[a-z]).{6,}$");
     private static final String CREATE_ADMIN_QUERY = "INSERT INTO admins(first_name,last_name,email,password,superadmin,enable) VALUES (?,?,?,?,?,?);";
     private static final String READ_ADMIN_ON_ID = "SELECT * FROM admins WHERE id = ?;";
     private static final String UPDATE_ADMIN_ON_ID = "UPDATE admins SET first_name = ?, last_name = ?, email = ?, password = ?, superadmin = ?, enable = ? WHERE id = ?;";
@@ -102,7 +104,7 @@ public class AdminDao {
         }
     }
 
-    public List<Admin> findAll() {
+    public static List<Admin> findAll() {
         List<Admin> bookList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_ALL_ADMINS_QUERY);
@@ -129,6 +131,27 @@ public class AdminDao {
     public static String hashPassword(String password){
         return BCrypt.hashpw(password, org.mindrot.jbcrypt.BCrypt.gensalt());
     }
+
+
+    public static Admin login(String adminEmail,String adminPassword){
+        List<Admin> allAdmins = findAll();
+        for (Admin admin: allAdmins) {
+            if(admin.getEmail().equalsIgnoreCase(adminEmail)){
+                System.out.println("true "+ admin.getEmail());
+                if(BCrypt.checkpw(adminPassword,admin.getPassword())){
+                    return admin;
+                }
+
+            }
+        }
+        return null;
+    }
+
+    public static boolean validatePassword(String password){
+        Matcher matcher = CHECK_PASSWORD.matcher(password);
+        return matcher.matches();
+    }
+
 }
 
 

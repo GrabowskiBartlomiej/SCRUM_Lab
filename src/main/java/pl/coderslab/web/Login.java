@@ -1,0 +1,41 @@
+package pl.coderslab.web;
+
+import org.mindrot.jbcrypt.BCrypt;
+import pl.coderslab.dao.AdminDao;
+import pl.coderslab.model.Admin;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.swing.*;
+import java.io.IOException;
+
+@WebServlet(name = "Login", urlPatterns = "/login")
+public class Login extends HttpServlet {
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        AdminDao ad = new AdminDao();
+        Admin loggedAdmin = ad.login(email,password);
+        if(loggedAdmin == null){
+            JOptionPane.showMessageDialog(null, "Podane dane są błędne");
+            response.sendRedirect("/login");
+        }else{
+            HttpSession session = request.getSession();
+            session.setAttribute("admin", loggedAdmin);
+            JOptionPane.showMessageDialog(null, "Witaj " + loggedAdmin.getFirstName() + " " + loggedAdmin.getLastName());
+            response.sendRedirect("/");
+        }
+
+    }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+    }
+}

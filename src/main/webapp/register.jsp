@@ -11,6 +11,12 @@
           rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<style>
+    .p{
+        font-size: 10px;
+    }
+</style>
+
 </head>
 <body>
 <%@include file="/META-INF/Fragments/header.jsp" %>
@@ -35,8 +41,9 @@
                     <div class="form-group">
                         <input type="password" class="form-control" id="password" name="password" placeholder="podaj hasło">
                     </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="repassword" name="password" placeholder="powtórz hasło">
+                    <div class="form-group p">
+                        Hasło musi mieć przynajmniej 6 znaków<br>
+                        <input type="password" class="form-control" id="repassword" name="repassword" placeholder="powtórz hasło">
                     </div>
                     <button class="btn btn-color rounded-0" type="submit">Zarejestruj</button>
                 </form>
