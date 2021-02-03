@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.*;
 import javax.xml.transform.sax.SAXResult;
 import java.io.IOException;
 
@@ -21,12 +22,23 @@ public class Register extends HttpServlet {
         String lastName = request.getParameter("last_name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String repassword = request.getParameter("repassword");
 
-        Admin newAdmin = new Admin(firstName,lastName,email,password,0,0);
-        AdminDao adminDao = new AdminDao();
-        adminDao.create(newAdmin);
+        if(password.equals(repassword)){
+            AdminDao adminDao = new AdminDao();
+            if (adminDao.validatePassword(password)) {
+                Admin newAdmin = new Admin(firstName,lastName,email,password,0,0);
+                adminDao.create(newAdmin);
+                response.sendRedirect("/");
+            }else{
+                JOptionPane.showMessageDialog(null, "Za krótkie hasło");
+                response.sendRedirect("/register");
+            }
+        }else {
+            JOptionPane.showMessageDialog(null, "Hasła do siebie nie pasują");
+            response.sendRedirect("/register");
+        }
 
-        response.sendRedirect("/");
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
