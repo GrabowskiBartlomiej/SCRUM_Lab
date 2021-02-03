@@ -5,9 +5,9 @@ public class Recipe {
   private String name;
   private String ingredients;
   private String description;
-  private double created;
-  private double updated;
-  private double preparation_time;
+  private String created;
+  private String updated;
+  private int preparation_time;
   private String preparation;
   private int admin_id;
 
@@ -15,9 +15,9 @@ public class Recipe {
       String name,
       String ingredients,
       String description,
-      double created,
-      double updated,
-      double preparation_time,
+      String created,
+      String updated,
+      int preparation_time,
       String preparation,
       int admin_id) {
     this.name = name;
@@ -93,27 +93,27 @@ public class Recipe {
     this.description = description;
   }
 
-  public double getCreated() {
+  public String getCreated() {
     return created;
   }
 
-  public void setCreated(double created) {
+  public void setCreated(String created) {
     this.created = created;
   }
 
-  public double getUpdated() {
+  public String getUpdated() {
     return updated;
   }
 
-  public void setUpdated(double updated) {
+  public void setUpdated(String updated) {
     this.updated = updated;
   }
 
-  public double getPreparation_time() {
+  public int getPreparation_time() {
     return preparation_time;
   }
 
-  public void setPreparation_time(double preparation_time) {
+  public void setPreparation_time(int preparation_time) {
     this.preparation_time = preparation_time;
   }
 
