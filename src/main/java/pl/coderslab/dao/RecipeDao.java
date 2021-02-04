@@ -98,6 +98,7 @@ public class RecipeDao {
       ResultSet rs = pre.executeQuery()){
       while(rs.next()){
         Recipe recipeToAdd = new Recipe();
+        recipeToAdd.setId(rs.getInt("id"));
         recipeToAdd.setName(rs.getString("name"));
         recipeToAdd.setDescription(rs.getString("description"));
         recipeToAdd.setIngredients(rs.getString("ingredients"));
