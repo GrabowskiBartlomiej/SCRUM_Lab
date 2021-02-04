@@ -25,6 +25,9 @@ public class RecipeAdd extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
+    HttpSession session = request.getSession();
+    Admin admin = (Admin) session.getAttribute("admin");
+
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     Date dateobj = new Date();
 
@@ -34,7 +37,7 @@ public class RecipeAdd extends HttpServlet {
     recipe.setPreparation_time(Integer.parseInt(request.getParameter("preparationTime")));
     recipe.setPreparation(request.getParameter("preparation"));
     recipe.setIngredients(request.getParameter("ingredients"));
-    recipe.setAdmin_id(1);
+    recipe.setAdmin_id(admin.getId());
     recipe.setUpdated(dateFormat.format(dateobj));
     recipe.setCreated(dateFormat.format(dateobj));
 
