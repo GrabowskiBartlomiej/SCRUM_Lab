@@ -52,17 +52,11 @@ public class AdminDao {
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
                 Admin admin1 = new Admin(adminId);
-                System.out.print(rs.getString(2)+" ~~~~~~ ");
                 admin1.setFirstName(rs.getString(2));
-                System.out.print(rs.getString(3) + " ~~~~~~ ");
                 admin1.setLastName(rs.getString(3));
-                System.out.print(rs.getString(4)+" ~~~~~~ ");
                 admin1.setEmail(rs.getString(4));
-                System.out.print(rs.getString(5)+" ~~~~~~ ");
                 admin1.setPassword(rs.getString(5));
-                System.out.print(rs.getString(6)+" ~~~~~~ ");
                 admin1.setSuperadmin(rs.getInt(6));
-                System.out.print(rs.getString(7)+" ~~~~~~ ");
                 admin1.setEnable(rs.getInt(7));
 
                 return admin1;
