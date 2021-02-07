@@ -1,9 +1,12 @@
 package pl.coderslab.dao;
 
+import pl.coderslab.model.Admin;
 import pl.coderslab.model.Plan;
 import pl.coderslab.utils.DbUtil;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class PlanDao {
@@ -11,7 +14,7 @@ public class PlanDao {
     private static final String READ_PLAN_ON_ID = "SELECT * FROM plan WHERE id = ?;";
     private static final String UPDATE_PLAN_ON_ID = "UPDATE plan SET name = ?, description = ?, created = ?, admin_id = ? WHERE id = ?;";
     public static final String DELETE_PLAN_ON_ID = "DELETE FROM plan WHERE id = ?";
-
+    private static final String FIND_ALL_PLANS_QUERY = "SELECT * FROM plan;";
 
     public Plan create(Plan plan) {
         try (Connection connection = DbUtil.getConnection()){
@@ -80,4 +83,28 @@ public class PlanDao {
             e.printStackTrace();
         }
     }
+
+    public static List<Plan> findAll() {
+        List<Plan> planList = new ArrayList<>();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_ALL_PLANS_QUERY);
+             ResultSet resultSet = statement.executeQuery()) {
+            System.out.println("połączyłeś się");
+            while (resultSet.next()) {
+                Plan planToAdd = new Plan();
+                planToAdd.setId(resultSet.getInt("id"));
+                planToAdd.setName(resultSet.getString("name"));
+                planToAdd.setDescription(resultSet.getString("description"));
+                planToAdd.setCreated(resultSet.getString("created"));
+                planToAdd.setAdminId(resultSet.getInt("admin_id"));
+                planList.add(planToAdd);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return planList;
+    }
+
+
 }

@@ -1,6 +1,6 @@
 package pl.coderslab.model;
 
-public class Plan {
+public class Plan implements Comparable<Plan>{
     private int id;
     private String name;
     private String description;
@@ -26,7 +26,7 @@ public class Plan {
         this.adminId = adminId;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -64,5 +64,10 @@ public class Plan {
 
     public void setAdminId(int adminId) {
         this.adminId = adminId;
+    }
+
+    @Override
+    public int compareTo(Plan p) {
+        return this.getId().compareTo(p.getId());
     }
 }
