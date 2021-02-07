@@ -8,10 +8,7 @@ import pl.coderslab.model.Plan;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import javax.swing.*;
 import java.io.IOException;
 
@@ -25,6 +22,7 @@ public class Login extends HttpServlet {
 
         AdminDao ad = new AdminDao();
         Admin loggedAdmin = ad.login(email,password);
+
         if(loggedAdmin == null){
             response.sendRedirect("/login");
         }else{
@@ -36,7 +34,6 @@ public class Login extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
     }
 }
