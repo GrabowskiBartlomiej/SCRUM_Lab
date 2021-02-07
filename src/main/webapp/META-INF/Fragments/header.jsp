@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <header class="page-header">
     <nav class="navbar navbar-expand-lg justify-content-around">
         <a href="/" class="navbar-brand main-logo">
@@ -27,7 +30,7 @@
                 <a class="nav-link disabled" href="/app/recipe/list">Przepisy</a>
             </li>
             <li class="nav-item ml-4">
-                <a class="nav-link disabled" href="/plan">Zaplanuj Posilki</a>
+                <a class="nav-link disabled" href="/plan">Zaplanuj Posiłki</a>
             </li>
             <li class="nav-item ml-4">
                 <a class="nav-link disabled" href="/contact">Kontakt</a>
