@@ -99,7 +99,7 @@ public class AdminDao {
     }
 
     public static List<Admin> findAll() {
-        List<Admin> bookList = new ArrayList<>();
+        List<Admin> adminList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_ALL_ADMINS_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
@@ -113,13 +113,13 @@ public class AdminDao {
                 adminToAdd.setPassword(resultSet.getString("password"));
                 adminToAdd.setSuperadmin(resultSet.getInt("superadmin"));
                 adminToAdd.setEnable(resultSet.getInt("enable"));
-                bookList.add(adminToAdd);
+                adminList.add(adminToAdd);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return bookList;
+        return adminList;
     }
 
     public static String hashPassword(String password){
