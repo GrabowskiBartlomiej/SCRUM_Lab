@@ -31,11 +31,9 @@ public class Register extends HttpServlet {
                 adminDao.create(newAdmin);
                 response.sendRedirect("/");
             }else{
-                JOptionPane.showMessageDialog(null, "Za krótkie hasło");
                 response.sendRedirect("/register");
             }
         }else {
-            JOptionPane.showMessageDialog(null, "Hasła do siebie nie pasują");
             response.sendRedirect("/register");
         }
 

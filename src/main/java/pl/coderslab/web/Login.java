@@ -2,14 +2,13 @@ package pl.coderslab.web;
 
 import org.mindrot.jbcrypt.BCrypt;
 import pl.coderslab.dao.AdminDao;
+import pl.coderslab.dao.PlanDao;
 import pl.coderslab.model.Admin;
+import pl.coderslab.model.Plan;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import javax.swing.*;
 import java.io.IOException;
 
@@ -23,13 +22,12 @@ public class Login extends HttpServlet {
 
         AdminDao ad = new AdminDao();
         Admin loggedAdmin = ad.login(email,password);
+
         if(loggedAdmin == null){
-            JOptionPane.showMessageDialog(null, "Podane dane są błędne");
             response.sendRedirect("/login");
         }else{
             HttpSession session = request.getSession();
             session.setAttribute("admin", loggedAdmin);
-            JOptionPane.showMessageDialog(null, "Witaj " + loggedAdmin.getFirstName() + " " + loggedAdmin.getLastName());
             response.sendRedirect("/");
         }
 
