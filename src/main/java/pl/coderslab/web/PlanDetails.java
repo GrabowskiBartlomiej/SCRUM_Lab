@@ -1,12 +1,10 @@
 package pl.coderslab.web;
 
+import pl.coderslab.dao.DayNameDao;
 import pl.coderslab.dao.PlanDao;
 import pl.coderslab.dao.RecipeDao;
 import pl.coderslab.dao.RecipePlanDao;
-import pl.coderslab.model.Admin;
-import pl.coderslab.model.Plan;
-import pl.coderslab.model.Recipe;
-import pl.coderslab.model.RecipePlan;
+import pl.coderslab.model.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,30 +31,29 @@ public class PlanDetails extends HttpServlet {
 
         PlanDao pd = new PlanDao();
         Plan plan = pd.read(planId);
-        session.setAttribute("plan",plan);
+        session.setAttribute("plan", plan);
 
-        Map<String,List<RecipePlan>> displayList = new HashMap<>();
+        Map<String, List<RecipePlan>> displayList = new HashMap<>();
         RecipePlanDao rpd = new RecipePlanDao();
 
-
-
-            for(int i = 1; i < 8; i++){
-                List<RecipePlan> rp = rpd.findAllRecipesByDay(i,planId);
-                if(rp==null || rp.isEmpty()){
-
-                }else {
-                    displayList.put(rpd.getDayName(i),rp);
-                }
-
+        for(int i = 1; i < 8; i++) {
+            List<RecipePlan> rp = rpd.findAllRecipesByDay(i, planId);
+            for (RecipePlan recipe : rp){
+                System.out.println(recipe.getMealName());
             }
 
-            session.setAttribute("displayList", displayList);
+            if (rp == null || rp.isEmpty()) {
+
+            } else {
+                displayList.put(rpd.getDayName(i), rp);
+            }
+        }
 
 
 
+        session.setAttribute("displayList", displayList);
 
 
-
-        getServletContext().getRequestDispatcher("/planDetails.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/planDetails.jsp").forward(request, response);
     }
 }

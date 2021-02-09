@@ -21,14 +21,14 @@ public class RecipePlanDao {
             "order by rp.display_order";
     private final static String GET_DAY_NAME_BY_ID = "select name from day_name where id = ?";
 
-    public static List<RecipePlan> findAllRecipesByDay(int i,int planId){
+    public static List<RecipePlan> findAllRecipesByDay(int i,int planId) {
         List<RecipePlan> recpePlanList = new ArrayList<>();
-        try(Connection cone = DbUtil.getConnection();){
+        try (Connection cone = DbUtil.getConnection();) {
             PreparedStatement pre = cone.prepareStatement(GET_RECIPES_BY_DAY_AND_PLAN);
-            pre.setInt(1,planId);
-            pre.setInt(2,i);
+            pre.setInt(1, planId);
+            pre.setInt(2, i);
             ResultSet resultSet = pre.executeQuery();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 RecipePlan recipePlan = new RecipePlan();
                 recipePlan.setDayId(resultSet.getInt("d.display_order"));
                 recipePlan.setDayName(resultSet.getString("d.name"));
@@ -37,7 +37,7 @@ public class RecipePlanDao {
                 recipePlan.setRecipeId(resultSet.getInt("r.id"));
                 recpePlanList.add(recipePlan);
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return recpePlanList;

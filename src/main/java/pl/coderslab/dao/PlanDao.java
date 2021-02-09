@@ -16,7 +16,6 @@ public class PlanDao {
     private static final String UPDATE_PLAN_ON_ID = "UPDATE plan SET name = ?, description = ?, created = ?, admin_id = ? WHERE id = ?;";
     public static final String DELETE_PLAN_ON_ID = "DELETE FROM plan WHERE id = ?";
     private static final String FIND_ALL_PLANS_QUERY = "SELECT * FROM plan;";
-    private static final String FIND_ALL_RECEIPES_FROM_PLAN = "";
     private static final String READ_ALL_ADMIN_PLANS_QUERY = "select * from plan where admin_id=?;";
 
     public Plan create(Plan plan) {
