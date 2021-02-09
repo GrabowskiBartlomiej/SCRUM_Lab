@@ -2,6 +2,7 @@ package pl.coderslab.dao;
 
 import pl.coderslab.model.Admin;
 import pl.coderslab.model.Plan;
+import pl.coderslab.model.Recipe;
 import pl.coderslab.utils.DbUtil;
 
 import java.sql.*;
@@ -15,6 +16,7 @@ public class PlanDao {
     private static final String UPDATE_PLAN_ON_ID = "UPDATE plan SET name = ?, description = ?, created = ?, admin_id = ? WHERE id = ?;";
     public static final String DELETE_PLAN_ON_ID = "DELETE FROM plan WHERE id = ?";
     private static final String FIND_ALL_PLANS_QUERY = "SELECT * FROM plan;";
+    private static final String READ_ALL_ADMIN_PLANS_QUERY = "select * from plan where admin_id=?;";
 
     public Plan create(Plan plan) {
         try (Connection connection = DbUtil.getConnection()){
@@ -107,4 +109,24 @@ public class PlanDao {
     }
 
 
+    public List<Plan> allAdminPlans(int adminId){
+        List<Plan> planList = new ArrayList<>();
+        try(Connection cone = DbUtil.getConnection();){
+            PreparedStatement pre = cone.prepareStatement(READ_ALL_ADMIN_PLANS_QUERY);
+            pre.setInt(1,adminId);
+            ResultSet resultSet = pre.executeQuery();
+            while(resultSet.next()){
+                Plan planToAdd = new Plan();
+                planToAdd.setId(resultSet.getInt("id"));
+                planToAdd.setName(resultSet.getString("name"));
+                planToAdd.setDescription(resultSet.getString("description"));
+                planToAdd.setCreated(resultSet.getString("created"));
+                planToAdd.setAdminId(resultSet.getInt("admin_id"));
+                planList.add(planToAdd);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return planList;
+    }
 }
