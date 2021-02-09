@@ -67,7 +67,7 @@
         </div>
     </div>
 </section>
-
+<%@include file="/META-INF/Fragments/footer.jsp"%>
 <%@include file="/META-INF/Fragments/scripts.jsp"%>
 </body>
 </html>

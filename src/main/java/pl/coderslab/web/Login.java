@@ -28,7 +28,7 @@ public class Login extends HttpServlet {
         }else{
             HttpSession session = request.getSession();
             session.setAttribute("admin", loggedAdmin);
-            response.sendRedirect("/");
+            response.sendRedirect("/app");
         }
 
     }
