@@ -1,18 +1,11 @@
 package pl.coderslab.dao;
 
-import pl.coderslab.model.Admin;
 import pl.coderslab.model.Plan;
-import pl.coderslab.model.Recipe;
 import pl.coderslab.utils.DbUtil;
-
 import java.sql.*;
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.Collections;
-=======
->>>>>>> 6554cdbdc9c6a209f3bf3565c6cc7bd81c27efd0
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class PlanDao {
     private static final String CREATE_PLAN_QUERY = "INSERT INTO plan (name, description, created, admin_id) VALUES (?,?,?,?);";
@@ -113,17 +106,18 @@ public class PlanDao {
     }
 
 
-<<<<<<< HEAD
+
     public Plan getTheLastPlan(){
         List<Plan> allPlans = findAll();
         Collections.sort(allPlans,Collections.reverseOrder());
         return allPlans.get(0);
     }
 
-    public int quantityOfAdminRecipes(int adminId){
-        List<Plan> allUsersPlans = findAll();
+    public int quantityOfAdminRecipes(int adminId) {
+        List<Plan> allUsersPlans = allAdminPlans(adminId);
         return allUsersPlans.size();
-=======
+    }
+
     public List<Plan> allAdminPlans(int adminId){
         List<Plan> planList = new ArrayList<>();
         try(Connection cone = DbUtil.getConnection();){
@@ -143,6 +137,6 @@ public class PlanDao {
             e.printStackTrace();
         }
         return planList;
->>>>>>> 6554cdbdc9c6a209f3bf3565c6cc7bd81c27efd0
+
     }
 }

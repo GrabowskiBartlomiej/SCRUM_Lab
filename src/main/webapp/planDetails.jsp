@@ -19,7 +19,7 @@
                         <h3 class="color-header text-uppercase">SZCZEGÓŁY PLANU</h3>
                     </div>
                     <div class="col d-flex justify-content-end mb-2 noPadding">
-                        <a href="#" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a>
+                        <a href="/app/plan/list" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a>
                     </div>
                 </div>
 
@@ -62,11 +62,7 @@
                                 <tr class="d-flex">
                                     <td class="col-2">${info.getMealName()}</td>
                                     <td class="col-8">${info.getRecipeName()}</td>
-<<<<<<< HEAD
                                     <td class="col-2"><a href="/app/recipe/details?id=${info.getRecipeId()}" class="btn btn-primary rounded-0">Szczegóły</a></td>
-=======
-                                    <td class="col-2"><a href="/app/recipe/details?id=${info.getRecipeId()}" class="btn btn-primary rounded-0">Szczegóły</a>
->>>>>>> 6554cdbdc9c6a209f3bf3565c6cc7bd81c27efd0
                                 </tr>
                                 </tbody>
                             </c:forEach>
