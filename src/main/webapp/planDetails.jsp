@@ -62,7 +62,11 @@
                                 <tr class="d-flex">
                                     <td class="col-2">${info.getMealName()}</td>
                                     <td class="col-8">${info.getRecipeName()}</td>
+<<<<<<< HEAD
                                     <td class="col-2"><a href="/app/recipe/details?id=${info.getRecipeId()}" class="btn btn-primary rounded-0">Szczegóły</a></td>
+=======
+                                    <td class="col-2"><a href="/app/recipe/details?id=${info.getRecipeId()}" class="btn btn-primary rounded-0">Szczegóły</a>
+>>>>>>> 6554cdbdc9c6a209f3bf3565c6cc7bd81c27efd0
                                 </tr>
                                 </tbody>
                             </c:forEach>

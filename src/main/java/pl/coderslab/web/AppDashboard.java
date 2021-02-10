@@ -27,6 +27,7 @@ public class AppDashboard extends HttpServlet {
         int id = admin.getId();
 
         RecipeDao r = new RecipeDao();
+<<<<<<< HEAD
         int quantityOfUsersRecipes = r.quantityOfAdminRecipes(id);
         session.setAttribute("quantityOfUsersRecipes",quantityOfUsersRecipes);
 
@@ -35,11 +36,25 @@ public class AppDashboard extends HttpServlet {
         session.setAttribute("lastPlan",lastPlan);
         int quantityOfUsersPlans = pd.quantityOfAdminRecipes(id);
         session.setAttribute("quantityOfUsersPlans",quantityOfUsersPlans);
+=======
+        List<Recipe> adminRecipes = r.allAdminRecipes(id);
+        session.setAttribute("adminRecipes",adminRecipes);
+
+        PlanDao pd = new PlanDao();
+        List<Plan> adminPlans = pd.allAdminPlans(id);
+        session.setAttribute("adminPlans",adminPlans);
+        Collections.sort(adminPlans,Collections.reverseOrder());
+        int planId = adminPlans.get(0).getId();
+>>>>>>> 6554cdbdc9c6a209f3bf3565c6cc7bd81c27efd0
 
         Map<String,List<RecipePlan>> displayList = new HashMap<>();
         RecipePlanDao rpd = new RecipePlanDao();
         for(int i = 1; i < 8; i++){
+<<<<<<< HEAD
             List<RecipePlan> rp = rpd.findAllRecipesByDay(i,lastPlan.getId());
+=======
+            List<RecipePlan> rp = rpd.findAllRecipesByDay(i,planId);
+>>>>>>> 6554cdbdc9c6a209f3bf3565c6cc7bd81c27efd0
             if(rp==null || rp.isEmpty()){
 
             }else {
@@ -48,6 +63,10 @@ public class AppDashboard extends HttpServlet {
         }
 
         session.setAttribute("displayList", displayList);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6554cdbdc9c6a209f3bf3565c6cc7bd81c27efd0
         getServletContext().getRequestDispatcher("/appDashboard.jsp").forward(request,response);
     }
 }
