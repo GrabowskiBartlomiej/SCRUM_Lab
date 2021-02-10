@@ -160,6 +160,14 @@ public class RecipeDao {
     }
     return recipeList;
   }
+<<<<<<< HEAD
+
+  public int quantityOfAdminRecipes(int adminId){
+    List<Recipe> allUsersRecipes = allAdminRecipes(adminId);
+    return allUsersRecipes.size();
+  }
+=======
+>>>>>>> 6554cdbdc9c6a209f3bf3565c6cc7bd81c27efd0
 }
 
 

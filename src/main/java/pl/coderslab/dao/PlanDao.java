@@ -7,6 +7,10 @@ import pl.coderslab.utils.DbUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
+<<<<<<< HEAD
+import java.util.Collections;
+=======
+>>>>>>> 6554cdbdc9c6a209f3bf3565c6cc7bd81c27efd0
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -109,6 +113,17 @@ public class PlanDao {
     }
 
 
+<<<<<<< HEAD
+    public Plan getTheLastPlan(){
+        List<Plan> allPlans = findAll();
+        Collections.sort(allPlans,Collections.reverseOrder());
+        return allPlans.get(0);
+    }
+
+    public int quantityOfAdminRecipes(int adminId){
+        List<Plan> allUsersPlans = findAll();
+        return allUsersPlans.size();
+=======
     public List<Plan> allAdminPlans(int adminId){
         List<Plan> planList = new ArrayList<>();
         try(Connection cone = DbUtil.getConnection();){
@@ -128,5 +143,6 @@ public class PlanDao {
             e.printStackTrace();
         }
         return planList;
+>>>>>>> 6554cdbdc9c6a209f3bf3565c6cc7bd81c27efd0
     }
 }
