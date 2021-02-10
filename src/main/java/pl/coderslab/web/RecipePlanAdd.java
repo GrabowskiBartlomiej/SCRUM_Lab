@@ -25,21 +25,25 @@ public class RecipePlanAdd extends HttpServlet {
         List<Plan> planList = planDao.findAll();
         request.setAttribute("choosePlan", planList);
 
-        getServletContext().getRequestDispatcher("/recipePlanAdd.jsp").forward(request, response);
-    }
+        getServletContext().getRequestDispatcher("/recipePlanAdd.jsp").forward(request, response); }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Integer plan = Integer.parseInt(request.getParameter("choosePlan"));
+        Integer plan = Integer.parseInt(request.getParameter("choosePla"));
         String name = request.getParameter("name");
         Integer number = Integer.parseInt(request.getParameter("number"));
         Integer recipie = Integer.parseInt(request.getParameter("recipie"));
         Integer day = Integer.parseInt(request.getParameter("day"));
 
+        System.out.println(plan);
+        System.out.println(name);
+        System.out.println(number);
+        System.out.println(recipie);
+        System.out.println(day);
+
         RecipePlan recipePlan = new RecipePlan(recipie, name, number, day, plan);
         RecipePlanDao recipePlanDao = new RecipePlanDao();
         recipePlanDao.create(recipePlan);
 
-        getServletContext().getRequestDispatcher("/recipePlanAdd.jsp").forward(request, response);
-    }
+        getServletContext().getRequestDispatcher("/recipePlanAdd.jsp").forward(request, response);   }
 }
