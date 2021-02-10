@@ -37,36 +37,20 @@
                 <div class="dashboard-alerts">
                     <div class="alert-item alert-info">
                         <i class="fas icon-circle fa-info-circle"></i>
-<<<<<<< HEAD
                         <span class="font-weight-bold">Liczba przepisów: ${quantityOfUsersRecipes}</span>
                     </div>
                     <div class="alert-item alert-light">
                         <i class="far icon-calendar fa-calendar-alt"></i>
                         <span class="font-weight-bold">Liczba planów: ${quantityOfUsersPlans}</span>
-=======
-                        <span class="font-weight-bold">Liczba przepisów: ${adminRecipes.size()}</span>
-                    </div>
-                    <div class="alert-item alert-light">
-                        <i class="far icon-calendar fa-calendar-alt"></i>
-                        <span class="font-weight-bold">Liczba planów: ${adminPlans.size()}</span>
->>>>>>> 6554cdbdc9c6a209f3bf3565c6cc7bd81c27efd0
+
                     </div>
                 </div>
             </div>
             <div class="m-4 p-4 border-dashed">
                 <h2 class="dashboard-content-title">
-<<<<<<< HEAD
                     <span>Ostatnio dodany plan:</span> ${lastPlan.getName()}
                 </h2>
                 <table class="table">
-=======
-                    <span>Ostatnio dodany plan:</span> ${adminPlans[0].getName()}
-                </h2>
-                <table class="table">
-                    ${dnd.findAll()}
-                    ${DayNameDao.findAll()}
->>>>>>> 6554cdbdc9c6a209f3bf3565c6cc7bd81c27efd0
-
                             <c:forEach var = "entry" items="${displayList}">
                                 <thead>
                                 <tr class="d-flex">
