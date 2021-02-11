@@ -83,10 +83,6 @@ public class RecipeDao {
     prep.setInt(1,deleteID);
     prep.executeUpdate();
 
-    boolean deleted = prep.execute();
-    if (!deleted){
-      throw new NotFoundException("Recipe not found!");
-    }
   } catch (SQLException e){
     e.printStackTrace();
   }
