@@ -27,7 +27,7 @@
                 <div class="mt-4 ml-4 mr-4">
                     <div class="row border-bottom border-3">
                         <div class="col"><h3 class="color-header text-uppercase">Szczegóły przepisu</h3></div>
-                        <div class="col d-flex justify-content-end mb-2"><a href="/app-recipes.html" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a></div>
+                        <div class="col d-flex justify-content-end mb-2"><a href="/app/recipe/list" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a></div>
                     </div>
                     <table class="table borderless">
                         <tbody>
@@ -66,7 +66,7 @@
         </div>
     </div>
 </section>
-
+<%@include file="/META-INF/Fragments/footer.jsp"%>
 <%@include file="/META-INF/Fragments/scripts.jsp"%>
 
 </body>

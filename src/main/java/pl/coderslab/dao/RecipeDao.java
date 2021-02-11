@@ -16,6 +16,7 @@ public class RecipeDao {
   private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?;";
   private static final String UPDATE_RECIPE_QUERY =
       "UPDATE recipe SET name = ?, ingredients = ?, description = ?, updated = ?, created = ?, preparation_time = ?, preparation = ?, admin_id = ? WHERE id = ?;";
+  private static final String READ_ALL_ADMIN_RECIPES_QUERY = "select * from recipe where admin_id=?;";
 
   public Recipe create (Recipe recipe){
     try (Connection connection = DbUtil.getConnection()) {
@@ -135,7 +136,36 @@ public class RecipeDao {
     }
   }
 
+  public List<Recipe> allAdminRecipes(int adminId){
+    List<Recipe> recipeList = new ArrayList<>();
+    try(Connection cone = DbUtil.getConnection();){
+        PreparedStatement pre = cone.prepareStatement(READ_ALL_ADMIN_RECIPES_QUERY);
+        pre.setInt(1,adminId);
+        ResultSet rs = pre.executeQuery();
+      while(rs.next()){
+        Recipe recipeToAdd = new Recipe();
+        recipeToAdd.setId(rs.getInt("id"));
+        recipeToAdd.setName(rs.getString("name"));
+        recipeToAdd.setDescription(rs.getString("description"));
+        recipeToAdd.setIngredients(rs.getString("ingredients"));
+        recipeToAdd.setPreparation(rs.getString("preparation"));
+        recipeToAdd.setUpdated(rs.getString("updated"));
+        recipeToAdd.setPreparation_time(rs.getInt("preparation_time"));
+        recipeToAdd.setCreated(rs.getString("created"));
+        recipeToAdd.setAdmin_id(rs.getInt("admin_id"));
+        recipeList.add(recipeToAdd);
+      }
+    } catch (SQLException e){
+      e.printStackTrace();
+    }
+    return recipeList;
+  }
 
+
+  public int quantityOfAdminRecipes(int adminId){
+    List<Recipe> allUsersRecipes = allAdminRecipes(adminId);
+    return allUsersRecipes.size();
+  }
 
 }
 
