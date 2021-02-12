@@ -56,7 +56,7 @@ public class BookDao {
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_ALL_BOOKS_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
-
+            System.out.println("połączyłeś się");
             while (resultSet.next()) {
                 Book bookToAdd = new Book();
                 bookToAdd.setId(resultSet.getInt("id"));
