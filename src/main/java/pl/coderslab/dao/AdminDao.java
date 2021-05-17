@@ -2,7 +2,6 @@ package pl.coderslab.dao;
 
 import org.mindrot.jbcrypt.BCrypt;
 import pl.coderslab.model.Admin;
-import pl.coderslab.model.Book;
 import pl.coderslab.utils.DbUtil;
 
 import java.sql.*;
@@ -20,9 +19,9 @@ public class AdminDao {
     private static final String FIND_ALL_ADMINS_QUERY = "SELECT * FROM admins;";
 
     public Admin create(Admin admin) {
-        try (Connection connection = DbUtil.getConnection()){
+        try (Connection connection = DbUtil.getConnection()) {
 
-             PreparedStatement insertStm = connection.prepareStatement(CREATE_ADMIN_QUERY, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement insertStm = connection.prepareStatement(CREATE_ADMIN_QUERY, Statement.RETURN_GENERATED_KEYS);
             insertStm.setString(1, admin.getFirstName());
             insertStm.setString(2, admin.getLastName());
             insertStm.setString(3, admin.getEmail());
@@ -45,12 +44,12 @@ public class AdminDao {
     }
 
 
-    public Admin read(int adminId){
-        try(Connection conn = DbUtil.getConnection()){
+    public Admin read(int adminId) {
+        try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(READ_ADMIN_ON_ID);
-            stmt.setInt(1,adminId);
+            stmt.setInt(1, adminId);
             ResultSet rs = stmt.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 Admin admin1 = new Admin(adminId);
                 admin1.setFirstName(rs.getString(2));
                 admin1.setLastName(rs.getString(3));
@@ -60,40 +59,38 @@ public class AdminDao {
                 admin1.setEnable(rs.getInt(7));
 
                 return admin1;
-            }else return null;
+            } else return null;
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
 
 
-
-
     public void update(Admin admin) {
-        try(Connection conn = DbUtil.getConnection()) {
+        try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(UPDATE_ADMIN_ON_ID);
-            stmt.setString(1,admin.getFirstName());
-            stmt.setString(2,admin.getLastName());
-            stmt.setString(3,admin.getEmail());
-            stmt.setString(4,admin.getPassword());
-            stmt.setInt(5,admin.getSuperadmin());
-            stmt.setInt(6,admin.getEnable());
-            stmt.setInt(7,admin.getId());
+            stmt.setString(1, admin.getFirstName());
+            stmt.setString(2, admin.getLastName());
+            stmt.setString(3, admin.getEmail());
+            stmt.setString(4, admin.getPassword());
+            stmt.setInt(5, admin.getSuperadmin());
+            stmt.setInt(6, admin.getEnable());
+            stmt.setInt(7, admin.getId());
             stmt.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
 
-    public void delete(int adminId){
-        try(Connection conn = DbUtil.getConnection()){
+    public void delete(int adminId) {
+        try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(DELETE_ADMIN_ON_ID);
-            stmt.setInt(1,adminId);
+            stmt.setInt(1, adminId);
             stmt.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -122,17 +119,17 @@ public class AdminDao {
         return adminList;
     }
 
-    public static String hashPassword(String password){
+    public static String hashPassword(String password) {
         return BCrypt.hashpw(password, org.mindrot.jbcrypt.BCrypt.gensalt());
     }
 
 
-    public static Admin login(String adminEmail,String adminPassword){
+    public static Admin login(String adminEmail, String adminPassword) {
         List<Admin> allAdmins = findAll();
-        for (Admin admin: allAdmins) {
-            if(admin.getEmail().equalsIgnoreCase(adminEmail)){
-                System.out.println("true "+ admin.getEmail());
-                if(BCrypt.checkpw(adminPassword,admin.getPassword())){
+        for (Admin admin : allAdmins) {
+            if (admin.getEmail().equalsIgnoreCase(adminEmail)) {
+                System.out.println("true " + admin.getEmail());
+                if (BCrypt.checkpw(adminPassword, admin.getPassword())) {
                     return admin;
                 }
 
@@ -141,7 +138,7 @@ public class AdminDao {
         return null;
     }
 
-    public static boolean validatePassword(String password){
+    public static boolean validatePassword(String password) {
         Matcher matcher = CHECK_PASSWORD.matcher(password);
         return matcher.matches();
     }

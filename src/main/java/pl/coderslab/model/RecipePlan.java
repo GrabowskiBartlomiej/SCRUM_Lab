@@ -11,16 +11,9 @@ public class RecipePlan {
     private String DayName;
     private String recipeName;
 
-    public String getDayName() {
-        return DayName;
-    }
 
     public void setDayName(String dayName) {
         DayName = dayName;
-    }
-
-    public String getRecipeName() {
-        return recipeName;
     }
 
     public void setRecipeName(String recipeName) {

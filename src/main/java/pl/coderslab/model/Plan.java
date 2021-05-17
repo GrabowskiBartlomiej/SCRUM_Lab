@@ -1,6 +1,6 @@
 package pl.coderslab.model;
 
-public class Plan implements Comparable<Plan>{
+public class Plan implements Comparable<Plan> {
     private int id;
     private String name;
     private String description;
@@ -11,11 +11,11 @@ public class Plan implements Comparable<Plan>{
         return "Plan [id=" + id + ", name=" + name + ", description=" + description + ", created=" + created + ", adminId=" + adminId + "]";
     }
 
-    public Plan(){
+    public Plan() {
 
     }
 
-    public Plan(int id){
+    public Plan(int id) {
         this.id = id;
     }
 

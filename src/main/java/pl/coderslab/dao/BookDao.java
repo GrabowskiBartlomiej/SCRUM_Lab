@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookDao {
-    // ZAPYTANIA SQL
     private static final String CREATE_BOOK_QUERY = "INSERT INTO book(title,author,isbn) VALUES (?,?,?);";
     private static final String DELETE_BOOK_QUERY = "DELETE FROM book where id = ?;";
     private static final String FIND_ALL_BOOKS_QUERY = "SELECT * FROM book;";

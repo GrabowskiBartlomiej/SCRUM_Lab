@@ -17,6 +17,7 @@ public class AuthFilter implements Filter {
     @Override
     public void destroy() {
     }
+
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
 
@@ -26,13 +27,14 @@ public class AuthFilter implements Filter {
         HttpSession session = request.getSession();
         Admin user = (Admin) session.getAttribute("admin");
 
-        if(user != null) {
-                chain.doFilter(req,resp);
+        if (user != null) {
+            chain.doFilter(req, resp);
             return;
-        }else {
+        } else {
             response.sendRedirect("/login");
         }
     }
+
     @Override
     public void init(FilterConfig config) throws ServletException {
 

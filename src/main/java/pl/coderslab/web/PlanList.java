@@ -18,12 +18,13 @@ public class PlanList extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PlanDao pd = new PlanDao();
         List<Plan> planList = pd.findAll();
 
-        Collections.sort(planList,Collections.reverseOrder());
+        Collections.sort(planList, Collections.reverseOrder());
 
 
         request.setAttribute("planList", planList);

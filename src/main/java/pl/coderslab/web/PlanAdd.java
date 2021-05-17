@@ -27,7 +27,7 @@ public class PlanAdd extends HttpServlet {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date dateobj = new Date();
 
-        Plan newPlan = new Plan(planName,planDescription,dateFormat.format(dateobj),adminId);
+        Plan newPlan = new Plan(planName, planDescription, dateFormat.format(dateobj), adminId);
         PlanDao pd = new PlanDao();
 
         pd.create(newPlan);
@@ -37,6 +37,6 @@ public class PlanAdd extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/planAdd.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/planAdd.jsp").forward(request, response);
     }
 }

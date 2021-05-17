@@ -36,9 +36,9 @@ public class PlanDetails extends HttpServlet {
         Map<String, List<RecipePlan>> displayList = new HashMap<>();
         RecipePlanDao rpd = new RecipePlanDao();
 
-        for(int i = 1; i < 8; i++) {
+        for (int i = 1; i < 8; i++) {
             List<RecipePlan> rp = rpd.findAllRecipesByDay(i, planId);
-            for (RecipePlan recipe : rp){
+            for (RecipePlan recipe : rp) {
                 System.out.println(recipe.getMealName());
             }
 
@@ -48,7 +48,6 @@ public class PlanDetails extends HttpServlet {
                 displayList.put(rpd.getDayName(i), rp);
             }
         }
-
 
 
         session.setAttribute("displayList", displayList);

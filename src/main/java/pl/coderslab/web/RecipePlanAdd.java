@@ -25,7 +25,8 @@ public class RecipePlanAdd extends HttpServlet {
         List<Plan> planList = planDao.findAll();
         request.setAttribute("choosePlan", planList);
 
-        getServletContext().getRequestDispatcher("/recipePlanAdd.jsp").forward(request, response); }
+        getServletContext().getRequestDispatcher("/recipePlanAdd.jsp").forward(request, response);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,5 +46,6 @@ public class RecipePlanAdd extends HttpServlet {
         RecipePlanDao recipePlanDao = new RecipePlanDao();
         recipePlanDao.create(recipePlan);
 
-        getServletContext().getRequestDispatcher("/recipePlanAdd.jsp").forward(request, response);   }
+        getServletContext().getRequestDispatcher("/recipePlanAdd.jsp").forward(request, response);
+    }
 }

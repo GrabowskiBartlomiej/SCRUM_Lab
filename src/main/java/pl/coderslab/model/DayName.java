@@ -25,7 +25,4 @@ public class DayName {
         return name;
     }
 
-    public int getDisplayOrder() {
-        return displayOrder;
-    }
 }

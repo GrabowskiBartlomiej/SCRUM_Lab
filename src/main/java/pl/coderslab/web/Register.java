@@ -24,20 +24,21 @@ public class Register extends HttpServlet {
         String password = request.getParameter("password");
         String repassword = request.getParameter("repassword");
 
-        if(password.equals(repassword)){
+        if (password.equals(repassword)) {
             AdminDao adminDao = new AdminDao();
             if (adminDao.validatePassword(password)) {
-                Admin newAdmin = new Admin(firstName,lastName,email,password,0,0);
+                Admin newAdmin = new Admin(firstName, lastName, email, password, 0, 0);
                 adminDao.create(newAdmin);
                 response.sendRedirect("/");
-            }else{
+            } else {
                 response.sendRedirect("/register");
             }
-        }else {
+        } else {
             response.sendRedirect("/register");
         }
 
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);

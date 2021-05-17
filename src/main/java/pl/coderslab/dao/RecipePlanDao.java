@@ -11,13 +11,13 @@ import java.util.List;
 public class RecipePlanDao {
 
     private static final String FIND_PLAN_BY_RECIPE_QUERY = "SELECT * FROM recipe_plan WHERE recipe_id = ?";
-    private static final String DELETE_RECIPE_BY_ID_QUERY= "DELETE FROM recipe_plan WHERE plan_id = ? AND recipe_id = ?";
+    private static final String DELETE_RECIPE_BY_ID_QUERY = "DELETE FROM recipe_plan WHERE plan_id = ? AND recipe_id = ?";
 
     private final static String GET_RECIPES_BY_DAY_AND_PLAN = "select d.display_order ,d.name ,rp.meal_name ,r.name,r.id\n" +
             "from  recipe r\n" +
             "inner join recipe_plan rp on r.id = rp.recipe_id\n" +
             "inner join day_name d on rp.day_name_id = d.id\n" +
-            "where rp.plan_id = ? AND rp.day_name_id = ?\n"+
+            "where rp.plan_id = ? AND rp.day_name_id = ?\n" +
             "order by rp.display_order";
     private final static String GET_DAY_NAME_BY_ID = "select name from day_name where id = ?";
 
@@ -66,10 +66,11 @@ public class RecipePlanDao {
             return null;
         }
     }
+
     public void removeRecipeByIdMealDay(int planId, int recipeId) {
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement insertStm = connection.prepareStatement(DELETE_RECIPE_BY_ID_QUERY)) {
-            insertStm.setInt(1,planId);
+            insertStm.setInt(1, planId);
             insertStm.setInt(2, recipeId);
             insertStm.executeUpdate();
         } catch (SQLException e) {
@@ -78,7 +79,7 @@ public class RecipePlanDao {
 
     }
 
-    public static List<RecipePlan> findAllRecipesByDay(int i,int planId) {
+    public static List<RecipePlan> findAllRecipesByDay(int i, int planId) {
         List<RecipePlan> recpePlanList = new ArrayList<>();
         try (Connection cone = DbUtil.getConnection();) {
             PreparedStatement pre = cone.prepareStatement(GET_RECIPES_BY_DAY_AND_PLAN);
@@ -100,16 +101,16 @@ public class RecipePlanDao {
         return recpePlanList;
     }
 
-    public static String getDayName(int id){
+    public static String getDayName(int id) {
         String dayName = "";
-        try(Connection cone = DbUtil.getConnection();){
+        try (Connection cone = DbUtil.getConnection();) {
             PreparedStatement pre = cone.prepareStatement(GET_DAY_NAME_BY_ID);
-            pre.setInt(1,id);
+            pre.setInt(1, id);
             ResultSet resultSet = pre.executeQuery();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 dayName = resultSet.getString("name");
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return dayName;

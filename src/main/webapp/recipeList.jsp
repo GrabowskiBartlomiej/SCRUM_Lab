@@ -7,19 +7,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Zaplanuj Jedzonko</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
           crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Charmonman:400,700|Open+Sans:400,600,700&amp;subset=latin-ext"
           rel="stylesheet">
     <link href='<c:url value="/css/style.css"/>' rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 
 <body>
 
 <%@include file="/META-INF/Fragments/header.jsp" %>
 
-<section class="dashboard-section" style="background-image: url('https://uc.uxpin.com/files/562391/559607/full-bloom-3acdf9.png')">
+<section class="dashboard-section"
+         style="background-image: url('https://uc.uxpin.com/files/562391/559607/full-bloom-3acdf9.png')">
 
     <div class="row dashboard-nowrap">
         <%@include file="/META-INF/Fragments/appSideBanner.jsp" %>
@@ -67,7 +70,7 @@
         </div>
     </div>
 </section>
-<%@include file="/META-INF/Fragments/footer.jsp"%>
-<%@include file="/META-INF/Fragments/scripts.jsp"%>
+<%@include file="/META-INF/Fragments/footer.jsp" %>
+<%@include file="/META-INF/Fragments/scripts.jsp" %>
 </body>
 </html>

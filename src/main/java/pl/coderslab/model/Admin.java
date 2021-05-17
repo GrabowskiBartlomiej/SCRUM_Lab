@@ -25,7 +25,7 @@ public class Admin {
         this.id = id;
     }
 
-    public Admin(int id){
+    public Admin(int id) {
         this.id = id;
     }
 
